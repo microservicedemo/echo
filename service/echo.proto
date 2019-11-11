@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "echo";
+
+package echo;
+
+import "google/api/annotations.proto";
+
+service Echo {
+	rpc Hi(SimpleMessage) returns (SimpleMessage) {
+		option (google.api.http) = {
+			post: "/echo/{msg_id}"
+			body: "*"
+		};
+	}
+}
+
+message SimpleMessage {
+	string msg_id = 1;
+	string message = 2;
+}
